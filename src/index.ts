@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import fs from "fs";
 import * as lockfile from "@yarnpkg/lockfile";
 import ini from "ini";
@@ -6,7 +8,9 @@ import glob from "glob";
 export function yarnLockCheck(
   registry = ini.parse(fs.readFileSync(".npmrc", "utf8")).registry
 ): void {
-  const lockFiles = glob.sync("**/yarn.lock");
+  const lockFiles = glob.sync("**/yarn.lock", {
+    ignore: ["**/node_modules/**", "./node_modules/**"],
+  });
 
   const errors: Record<string, string[]> = {};
 
