@@ -37,8 +37,9 @@ export function yarnLockCheck(
     const message = `
 You pushed changes to the yarn.lock with the wrong registry.
 Please ensure your registry is set to ${registry}:
+${errorList}
 
-${errorList}`;
+`;
 
     throw new Error(message);
   }
