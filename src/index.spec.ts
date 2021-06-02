@@ -12,6 +12,12 @@ describe("yarnLockCheck", () => {
     expect(() => yarnLockCheck("https://registry.com")).not.toThrow();
   });
 
+  it("does not throw if packages have no resolve field", () => {
+    useFixture("internal");
+
+    expect(() => yarnLockCheck("https://registry.com")).not.toThrow();
+  });
+
   it("throws if any yaml.locks contains wrong registries", () => {
     useFixture("error");
 

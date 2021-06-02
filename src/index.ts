@@ -20,6 +20,7 @@ export function yarnLockCheck(
       lock.object as lockfile.LockFileObject
     )
       .map((item) => item.resolved)
+      .filter(Boolean)
       .filter((url) => !url?.startsWith(registry)) as string[];
 
     if (urlsWithWrongRegistry.length) errors[lockFile] = urlsWithWrongRegistry;
