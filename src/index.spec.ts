@@ -25,4 +25,10 @@ describe("yarnLockCheck", () => {
       yarnLockCheck("https://registry.com")
     ).toThrowErrorMatchingSnapshot();
   });
+
+  it("recursivelly looks up .npmrc", () => {
+    useFixture("run-from-folder/folder");
+
+    expect(() => yarnLockCheck()).not.toThrow();
+  });
 });
